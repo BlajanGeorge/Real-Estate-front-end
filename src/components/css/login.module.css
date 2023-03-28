@@ -1,0 +1,65 @@
+.login_box {
+    background-color: #F3F3F3;
+    border-radius: 43px;
+    margin-top: 10%;
+    width: 40%;
+    height: 60%;
+    margin-left: 30%;
+}
+
+.logo {
+    margin-top: 7%;
+    margin-left: 43%;
+}
+
+.logo_name {
+    margin-top: 2%;
+    margin-left: 46.5%;
+}
+
+.sign_in_text {
+    font-family: 'Mulish';
+    font-size: 25px !important;
+    margin-top: 5% !important;
+    margin-left: 43% !important;
+}
+
+.username_field {
+    margin-left: 5% !important;
+    margin-top: 5% !important;
+    width: 90%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+::-webkit-input-placeholder {
+    color: "B0B0B0";
+    text-align: center;
+    font-family: 'Montserrat';
+}
+
+.password_field {
+    margin-left: 5% !important;
+    margin-top: 5% !important;
+    width: 90%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    height: 50px !important;
+    border: none;
+    text-align: center;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.login_button {
+    width: 180px;
+    border-radius: 43px !important;
+    margin-top: 7% !important;
+    margin-left: 37% !important;
+    height: 50px !important;
+}

@@ -1,0 +1,29 @@
+.sign_up_box {
+    background-color: #F3F3F3;
+    border-radius: 43px;
+    margin-top: 2%;
+    width: 40%;
+    height: 90%;
+    margin-left: 30%;
+}
+
+.short_field {
+    margin-left: 5% !important;
+    margin-top: 5% !important;
+    width: 42%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.button {
+    width: 180px;
+    border-radius: 43px !important;
+    margin-top: 5% !important;
+    margin-left: 37% !important;
+    height: 50px !important;
+}

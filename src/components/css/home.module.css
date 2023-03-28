@@ -1,0 +1,53 @@
+.home_img_1 {
+position: absolute;
+margin-top: 8.7%;
+width: 1730px;
+height: 200px;
+}
+
+.home_img_2 {
+    position: absolute;
+    margin-top: 12%;
+    width: 300px;
+    margin-left: 57%;
+}
+
+.home_img_3 {
+    position: absolute;
+    margin-top: 16% !important;
+    width: 300px;
+    margin-left: 57%;
+}
+
+.home_img_4 {
+    position: absolute;
+    margin-top: 28% !important;
+    width: 1000px;
+    margin-left: 20%;
+}
+
+.box_for_livings {
+    position: absolute;
+    height: 490px;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 55%;
+    margin-bottom: 5%;
+    border-radius: 8px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.box_for_image {
+    width: 280px;
+    height: 300px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.circle {
+    margin-top: 84%;
+    width: 50px;
+    margin-left: 48%;
+}

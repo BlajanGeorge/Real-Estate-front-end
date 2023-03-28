@@ -1,0 +1,67 @@
+.logo {
+    margin-top: 25%;
+}
+
+.logo_2{
+    position: absolute;
+    margin-top: 9%;
+    margin-left: 65%;
+}
+
+.logo_3{
+    position: absolute;
+    margin-top: 15%;
+    margin-left: 20%;
+}
+
+.field {
+    position: absolute;
+    margin-left: 15% !important;
+    margin-top: 24% !important;
+    width: 30%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_2 {
+    position: absolute;
+    margin-left: 15% !important;
+    margin-top: 28% !important;
+    width: 30%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_3 {
+    position: absolute;
+    margin-left: 15% !important;
+    margin-top: 32% !important;
+    width: 30%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 200px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    width: 180px;
+    border-radius: 43px !important;
+    margin-top: 10% !important;
+    margin-left: 24.5% !important;
+    height: 50px !important;
+}
+

@@ -1,0 +1,58 @@
+.field {
+    margin-left: 5% !important;
+    margin-top: 5% !important;
+    width: 90%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+::-webkit-input-placeholder {
+    color: "B0B0B0";
+    text-align: center;
+    font-family: 'Montserrat';
+}
+
+.text {
+    font-family: 'Mulish';
+    font-size: 25px !important;
+    margin-top: 5% !important;
+    margin-left: 43% !important;
+}
+
+.button {
+    width: 180px;
+    border-radius: 43px !important;
+    margin-top: 7% !important;
+    margin-left: 37% !important;
+    height: 50px !important;
+}
+
+.logo {
+    margin-top: 7%;
+    margin-left: 43%;
+}
+
+.logo_name {
+    margin-top: 2%;
+    margin-left: 46.5%;
+}
+
+.app_bar {
+    height : 150px !important;
+    background-color: white !important;
+}
+
+.logo_navbar {
+   margin-left: -20%;
+   margin-top: 1%;
+}
+
+.logo_name_navbar {
+    margin-left: -4.4%;
+    margin-top: 9%;
+}

@@ -1,0 +1,102 @@
+.logo {
+    position: absolute;
+    margin-top: 8.8%;
+}
+
+.field_1 {
+    position: absolute;
+    margin-left: 33% !important;
+    margin-top: 30% !important;
+    width: 15%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_2{
+    position: absolute;
+    margin-left: 50% !important;
+    margin-top: 30% !important;
+    width: 15%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_3{
+    position: absolute;
+    margin-left: 34% !important;
+    margin-top: 35% !important;
+    width: 30%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_4{
+    position: absolute;
+    margin-left: 33% !important;
+    margin-top: 40% !important;
+    width: 15%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_5{
+    position: absolute;
+    margin-left: 50% !important;
+    margin-top: 40% !important;
+    width: 15%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_6{
+    position: absolute;
+    margin-left: 33% !important;
+    margin-top: 45% !important;
+    width: 15%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_7{
+    position: absolute;
+    margin-left: 50% !important;
+    margin-top: 45% !important;
+    width: 15%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}

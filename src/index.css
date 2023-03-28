@@ -1,0 +1,11 @@
+body,
+ #root,
+ html {
+     padding: 0;
+     margin: 0;
+     height: 100%;
+ }
+
+ #id1 {
+  overflow: hidden;
+ }
