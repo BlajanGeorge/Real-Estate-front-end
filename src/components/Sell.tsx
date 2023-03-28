@@ -26,6 +26,9 @@ function Sell() {
             <input type="text" placeholder="Ms" className={style.field_6}/>
         </label>
         <label>
+            <input type="text" placeholder="Rooms" className={style.field_8}/>
+        </label>
+        <label>
             <input type="text" placeholder="!Type!" className={style.field_7}/>
         </label>
         <img className={style.logo_2} src="src/assets/sell_logo_1.svg" width="100px"/>
