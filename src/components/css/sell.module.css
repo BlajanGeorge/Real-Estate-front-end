@@ -106,3 +106,12 @@
     margin-top: 50%;
     margin-left: 40%;
 }
+
+.button {
+    position: absolute;
+    width: 180px;
+    border-radius: 43px !important;
+    margin-top: 50.5% !important;
+    margin-left: 47% !important;
+    height: 50px !important;
+}

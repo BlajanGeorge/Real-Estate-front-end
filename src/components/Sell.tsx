@@ -1,5 +1,6 @@
 import Navbar from "./Navbar";
 import style from "./css/sell.module.css"
+import { Button } from "@mui/material";
 
 function Sell() {
     return (
@@ -28,6 +29,7 @@ function Sell() {
             <input type="text" placeholder="!Type!" className={style.field_7}/>
         </label>
         <img className={style.logo_2} src="src/assets/sell_logo_1.svg" width="100px"/>
+        <Button className={style.button} variant="contained" sx={{background:"linear-gradient(#6EEE40, #52C9A6)"}}>PUBLISH</Button>
         </>
     )
 }
