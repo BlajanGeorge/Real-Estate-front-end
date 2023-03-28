@@ -100,3 +100,9 @@
     box-shadow: inset 1px 1px 10px  gray;
     text-align: center;
 }
+
+.logo_2 {
+    position: absolute;
+    margin-top: 50%;
+    margin-left: 40%;
+}
