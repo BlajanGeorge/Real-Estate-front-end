@@ -3,6 +3,35 @@
     width: 180px;
     border-radius: 43px !important;
     margin-top: 15% !important;
-    margin-left: 75% !important;
+    margin-left: 85% !important;
     height: 50px !important;
+}
+
+.button_2 {
+    position: absolute !important;
+    width: 180px;
+    border-radius: 43px !important;
+    margin-top: 18% !important;
+    margin-left: 22% !important;
+    height: 50px !important;
+}
+
+.box_for_rent {
+    position: absolute;
+    height: 55%;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    border-radius: 8px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.box_for_image {
+    width: 280px;
+    height: 300px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
