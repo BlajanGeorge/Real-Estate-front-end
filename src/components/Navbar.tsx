@@ -11,7 +11,6 @@ import BusinessIcon from '@mui/icons-material/Business';
 function Navbar() {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const [anchorElRent, setAnchorElRent] = React.useState<null | HTMLElement>(null);
-    const [anchorElSell, setAnchorElSell] = React.useState<null | HTMLElement>(null);
     
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
@@ -29,35 +28,64 @@ function Navbar() {
         setAnchorElRent(null);
     }
 
-    const handleOpenSellMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElSell(event.currentTarget);
-    };
-
-    const handleCloseSellMenu = () => {
-        setAnchorElSell(null);
-    }
-
     const handleLogOut = () => {
 
     }
-    
+
+    const handleHome = () => {
+        window.location.replace("/home")
+    }
+
+    const handleNews = () => {
+        window.location.replace("/news")
+    }
+
+    const handleSell = () => {
+        window.location.replace("/sell")
+    }
+
+    const handleAbout = () => {
+        window.location.replace("/about")
+    }
+
+    const handleContact = () => {
+        window.location.replace("/contact")
+    }
+
+    const handleRentApartment = () => {
+        window.location.replace("/apartments") 
+    }
+
+    const handleRentHouse = () => {
+        window.location.replace("/houses") 
+    }
+
+    const handleRentAll = () => {
+        window.location.replace("/all") 
+    }
+
     return (
         <AppBar className={style.app_bar}>
              <Container>
              <Toolbar disableGutters>
              <img className={style.logo_navbar} src="src/assets/logo.svg" width="60"/>
              <img className={style.logo_name_navbar} src="src/assets/logo_name.svg" width="40"/>
-             <Button className={navbar_style.first_button} disableRipple sx={{
+             <Button className={navbar_style.first_button} disableRipple 
+             onClick={handleHome}
+             sx={{
               "&.MuiButtonBase-root:hover": {
                 bgcolor: "transparent"
               }
             }}>Home</Button>
-              <Button className={navbar_style.button} disableRipple sx={{
+              <Button className={navbar_style.button} disableRipple
+              onClick={handleNews}
+               sx={{
               "&.MuiButtonBase-root:hover": {
                 bgcolor: "transparent"
               }
             }}>News</Button>
-              <Button className={navbar_style.button} disableRipple sx={{
+              <Button className={navbar_style.button} disableRipple 
+              sx={{
               "&.MuiButtonBase-root:hover": {
                 bgcolor: "transparent"
               }
@@ -79,15 +107,15 @@ function Navbar() {
                     open={Boolean(anchorElRent)}
                     onClose={handleCloseRentMenu}
                 >
-                    <MenuItem sx={{ height: '40px', width: '165px' }} divider={true} dense={true} onClick={handleCloseRentMenu}>
+                    <MenuItem sx={{ height: '40px', width: '165px' }} divider={true} dense={true} onClick={handleRentApartment}>
                         <ApartmentIcon sx={{marginRight:'5px'}}/>
                         Apartment
                         </MenuItem>
-                    <MenuItem sx={{ height: '40px', width: '165px' }} dense={true} onClick={handleLogOut}>
+                    <MenuItem sx={{ height: '40px', width: '165px' }} dense={true} onClick={handleRentHouse}>
                         <HomeIcon sx={{marginRight:'5px'}}/>
                         House
                     </MenuItem>
-                    <MenuItem sx={{ height: '40px', width: '165px' }} dense={true} onClick={handleLogOut}>
+                    <MenuItem sx={{ height: '40px', width: '165px' }} dense={true} onClick={handleRentAll}>
                         <BusinessIcon sx={{marginRight:'5px'}}/>
                         All
                     </MenuItem>
@@ -97,42 +125,18 @@ function Navbar() {
                 bgcolor: "transparent"
               }
             }}
-            onClick={handleOpenRentMenu}
+            onClick={handleSell}
             >Sell</Button>
-            <Menu
-                    sx={{ width: '165px', height: '250px', marginLeft:'35px' }}
-                    anchorEl={anchorElSell}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    open={Boolean(anchorElSell)}
-                    onClose={handleCloseSellMenu}
-                >
-                    <MenuItem sx={{ height: '40px', width: '165px' }} divider={true} dense={true} onClick={handleCloseSellMenu}>
-                        <ApartmentIcon sx={{marginRight:'5px'}}/>
-                        Apartment
-                        </MenuItem>
-                    <MenuItem sx={{ height: '40px', width: '165px' }} dense={true} onClick={handleLogOut}>
-                        <HomeIcon sx={{marginRight:'5px'}}/>
-                        House
-                    </MenuItem>
-                    <MenuItem sx={{ height: '40px', width: '165px' }} dense={true} onClick={handleLogOut}>
-                        <BusinessIcon sx={{marginRight:'5px'}}/>
-                       All
-                    </MenuItem>
-                </Menu>
-              <Button className={navbar_style.button} disableRipple sx={{
+              <Button className={navbar_style.button} disableRipple
+              onClick={handleAbout}
+              sx={{
               "&.MuiButtonBase-root:hover": {
                 bgcolor: "transparent"
               }
             }}>About</Button>
-              <Button className={navbar_style.button} disableRipple sx={{
+              <Button className={navbar_style.button} disableRipple
+               onClick={handleContact}
+              sx={{
               "&.MuiButtonBase-root:hover": {
                 bgcolor: "transparent"
               }
