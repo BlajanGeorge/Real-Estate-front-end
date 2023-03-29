@@ -1,0 +1,8 @@
+.button {
+    position: absolute;
+    width: 180px;
+    border-radius: 43px !important;
+    margin-top: 15% !important;
+    margin-left: 75% !important;
+    height: 50px !important;
+}

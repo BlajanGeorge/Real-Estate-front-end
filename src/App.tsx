@@ -21,9 +21,9 @@ function App() {
         <Route path={FrontEndRoutes.CONTACT_ROUTE} element={<Contact/>}/>
         <Route path={FrontEndRoutes.NEWS_ROUTE} element={<News/>}/>
         <Route path={FrontEndRoutes.SELL_ROUTE} element={<Sell/>}/>
-        <Route path={FrontEndRoutes.ALL_ROUTE} element={<Rent type='ALL'/>}/>
-        <Route path={FrontEndRoutes.APARTMENT_ROUTE} element={<Rent type='APARTMENT'/>}/>
-        <Route path={FrontEndRoutes.HOUSE_ROUTE} element={<Rent type='HOUSE'/>}/>
+        <Route path={FrontEndRoutes.ALL_ROUTE} element={<Rent type='All'/>}/>
+        <Route path={FrontEndRoutes.APARTMENT_ROUTE} element={<Rent type='Apartment'/>}/>
+        <Route path={FrontEndRoutes.HOUSE_ROUTE} element={<Rent type='House'/>}/>
       </Routes>
     </BrowserRouter>
   )
