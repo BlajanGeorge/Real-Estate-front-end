@@ -7,6 +7,7 @@ import React from "react";
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import HomeIcon from '@mui/icons-material/Home';
 import BusinessIcon from '@mui/icons-material/Business';
+import { FrontEndRoutes } from "../constants/Constant";
 
 function Navbar() {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -29,7 +30,10 @@ function Navbar() {
     }
 
     const handleLogOut = () => {
-
+        localStorage.removeItem('id')
+        localStorage.removeItem('role')
+        localStorage.removeItem('token')
+        window.location.replace(FrontEndRoutes.LOGIN_ROUTE)
     }
 
     const handleHome = () => {
