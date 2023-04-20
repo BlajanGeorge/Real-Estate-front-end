@@ -11,6 +11,23 @@
     text-align: center;
 }
 
+.field_err {
+    margin-left: 5% !important;
+    margin-top: 5% !important;
+    width: 90%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: solid red;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_err::placeholder {
+    color :red
+}
+
 ::-webkit-input-placeholder {
     color: "B0B0B0";
     text-align: center;
