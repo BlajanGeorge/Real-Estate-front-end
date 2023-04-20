@@ -17,6 +17,10 @@ function Navbar() {
         setAnchorElUser(event.currentTarget);
       };
 
+    const handleCloseRentMenu = () => {
+        setAnchorElRent(null)
+    }
+
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     }
@@ -25,8 +29,9 @@ function Navbar() {
         setAnchorElRent(event.currentTarget);
     };
 
-    const handleCloseRentMenu = () => {
+    const handleUserProfile = () => {
         setAnchorElRent(null);
+        window.location.replace(FrontEndRoutes.PROFILE_ROUTE)
     }
 
     const handleLogOut = () => {
@@ -163,7 +168,7 @@ function Navbar() {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                 >
-                    <MenuItem sx={{ height: '40px', width: '135px' }} divider={true} dense={true} onClick={handleCloseUserMenu}>
+                    <MenuItem sx={{ height: '40px', width: '135px' }} divider={true} dense={true} onClick={handleUserProfile}>
                         <AccountCircleIcon sx={{marginRight:'5px'}}/>
                         Profile
                         </MenuItem>

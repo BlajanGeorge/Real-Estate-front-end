@@ -11,6 +11,45 @@
     text-align: center;
 }
 
+.field_email_profile {
+    margin-top: 4%;
+    position: absolute;
+    width: 40%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_first_name_profile {
+    margin-top: 13%;
+    position: absolute;
+    width: 40%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_last_name_profile {
+    margin-top: 22%;
+    position: absolute;
+    width: 40%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
 .field_err {
     margin-left: 5% !important;
     margin-top: 5% !important;
@@ -46,6 +85,15 @@
     border-radius: 43px !important;
     margin-top: 7% !important;
     margin-left: 37% !important;
+    height: 50px !important;
+}
+
+.button_edit_profile {
+    position: absolute;
+    margin-top: 61% !important;
+    margin-left: 28% !important;
+    width: 180px;
+    border-radius: 43px !important;
     height: 50px !important;
 }
 

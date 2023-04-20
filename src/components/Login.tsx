@@ -11,7 +11,9 @@ function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  async function login() { 
+  async function login() {
+    console.log(email)
+    console.log(password)
     await axios.post(BackEndRoutes.ROOT_ROUTE + BackEndRoutes.LOGIN_ROUTE, {'email' : email, 'password' : password})
     .then(function(res){
       localStorage.setItem('id', res.data.id)

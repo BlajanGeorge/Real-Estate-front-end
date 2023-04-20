@@ -9,6 +9,7 @@ export const FrontEndRoutes = {
     HOUSE_ROUTE:"/houses",
     ALL_ROUTE:"/all",
     SELL_ROUTE:"/sell",
+    PROFILE_ROUTE:"/profile"
 };
 
 export const BackEndRoutes = {
@@ -16,4 +17,6 @@ export const BackEndRoutes = {
     VALID_LOCATIONS_ROUTE: "locations",
     SIGN_UP_ROUTE: "users",
     LOGIN_ROUTE: "login",
+    PROFILE_ROUTE: "profile",
+    PASSWORD_ROUTE: "password",
 };

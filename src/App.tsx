@@ -8,6 +8,7 @@ import News from "./components/News"
 import { FrontEndRoutes } from "./constants/Constant"
 import Sell from "./components/Sell"
 import Rent from "./components/Rent"
+import Profile from "./components/Profile"
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path={FrontEndRoutes.ALL_ROUTE} element={<Rent type='All'/>}/>
         <Route path={FrontEndRoutes.APARTMENT_ROUTE} element={<Rent type='Apartment'/>}/>
         <Route path={FrontEndRoutes.HOUSE_ROUTE} element={<Rent type='House'/>}/>
+        <Route path={FrontEndRoutes.PROFILE_ROUTE} element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
   )
