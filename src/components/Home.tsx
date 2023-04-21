@@ -1,21 +1,35 @@
 import Navbar from "./Navbar";
 import style from "./css/home.module.css";
-import { useState } from "react";
-import { Box, Card, CardMedia, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box, Card, CardActionArea, CardMedia, Typography } from "@mui/material";
+import { Property } from "./Profile";
+import { BackEndRoutes, FrontEndRoutes } from "../constants/Constant";
+import axios from "axios";
 
 function Home() {
 
-    interface livingEntity {
-        name : string,
-        city : string,
-        country : string,
-        photoUrl : string
+    const[properties, setProperties] = useState(Array<Property>)
+    const[populate, setPopulate] = useState(false)
+
+    async function getProperties() {
+        axios.get(BackEndRoutes.ROOT_ROUTE + BackEndRoutes.PROPERTIES_ROUTE,  {
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token') as string
+            }})
+        .then(function(res){
+        setProperties(res.data)
+        setPopulate(true)
+        })
     }
 
-    const [dummyLivingEntities] = useState(new Array<livingEntity>(
-        {name : "Lodha Miracles", city : "Cluj Napoca", country : "Romania", photoUrl: "src/assets/home_img_5.png"}, 
-        {name : "Lodha Magic", city : "Cluj Napoca", country : "Romania", photoUrl: "src/assets/home_img_6.png"}, 
-        {name : "Lodha Party", city : "Bucuresti", country : "Romania", photoUrl: "src/assets/home_img_7.png"}))
+    const goToProperty = (id : number) => {
+        localStorage.setItem('property', id as unknown as string)
+        window.location.replace(FrontEndRoutes.PROPERTY_ROUTE)
+    }
+
+    useEffect(()=>{
+        getProperties()
+    }, [])
 
     return (
         <>
@@ -26,20 +40,22 @@ function Home() {
         <img className={style.home_img_4} src="src/assets/home_img_4.png"/>
         <Box className={style.box_for_livings}>
         {
-            dummyLivingEntities.map((entity) => {
-               return <Card sx={{height:'450px', width:'300px', marginLeft:'12.5%', backgroundColor:"#F3F3F3", borderRadius:'25px'}}>
+            properties.slice(0,3).map((property) => {
+               return <CardActionArea sx={{height:'450px', width:'300px', marginLeft:'12.5%', borderRadius:'25px'}} onClick={() => goToProperty(property.id)}>
+               <Card sx={{height:'450px', width:'300px', backgroundColor:"#F3F3F3", borderRadius:'25px'}}>
                 <Box className={style.box_for_image}>
                  <CardMedia
                    component="img"
-                   image={entity.photoUrl}/>
-                   <Typography sx={{ fontWeight:"900", marginTop:'15px', fontSize:'24px', color:"#434343", marginLeft:'15px'}}>{entity.name}</Typography>
-                   <Typography sx={{ fontWeight:"600", marginTop:'2px', fontSize:'10px', color:"#434343", marginLeft:'15px'}}>{entity.city}, {entity.country}</Typography>
+                   image={property.photos[0].url}/>
+                   <Typography sx={{ fontWeight:"900", marginTop:'15px', fontSize:'24px', color:"#434343", marginLeft:'15px'}}>{property.name}</Typography>
+                   <Typography sx={{ fontWeight:"600", marginTop:'2px', fontSize:'10px', color:"#434343", marginLeft:'15px'}}>{property.city}, {property.country}</Typography>
                     </Box>
                </Card>
+               </CardActionArea>
             })   
        }
        </Box>
-       <img className={style.circle} src="src/assets/arrows.svg"/>
+       <img className={style.circle} src="src/assets/arrows.svg" onClick={() => window.location.replace(FrontEndRoutes.ALL_ROUTE)}/>
      </>
     )
 }

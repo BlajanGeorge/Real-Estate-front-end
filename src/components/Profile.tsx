@@ -5,25 +5,27 @@ import { BackEndRoutes, FrontEndRoutes } from "../constants/Constant";
 import Navbar from "./Navbar";
 import style from "./css/common.module.css";
 
+export interface Photo {
+    url : string
+}
+
+export interface Property {
+    name : string
+    id : number
+    country : string
+    city : string
+    address : string
+    exchange : string
+    price : number
+    square_feet : number
+    rooms : number
+    type : string
+    photos : Array<Photo>
+
+}
+
 function Profile() {
-    interface Photo {
-        url : string
-    }
 
-    interface Property {
-        name : string
-        id : number
-        country : string
-        city : string
-        address : string
-        exchange : string
-        price : number
-        square_feet : number
-        rooms : number
-        type : string
-        photos : Array<Photo>
-
-    }
     const [detailsFetched, setDetailsFetched] = useState(false)
     const [email, setEmail] = useState('')
     const [firstName, setFirstName] = useState('')

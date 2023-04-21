@@ -20,4 +20,5 @@ export const BackEndRoutes = {
     LOGIN_ROUTE: "login",
     PROFILE_ROUTE: "profile",
     PASSWORD_ROUTE: "password",
+    PROPERTIES_ROUTE: "properties",
 };
