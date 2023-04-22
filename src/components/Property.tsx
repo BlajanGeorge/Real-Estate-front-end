@@ -105,8 +105,6 @@ function PropertyEntity() {
             setScheduleMessage('Invalid date format, should specify year:month:day:hour:minutes')
             return
         }
-
-        var endTime = initialTime! + 3600000
     }
 
     const handleNext = () => {
