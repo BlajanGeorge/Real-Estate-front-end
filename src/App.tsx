@@ -9,6 +9,7 @@ import { FrontEndRoutes } from "./constants/Constant"
 import Sell from "./components/Sell"
 import Rent from "./components/Rent"
 import Profile from "./components/Profile"
+import PropertyEntity from "./components/Property"
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path={FrontEndRoutes.APARTMENT_ROUTE} element={<Rent type='Apartment'/>}/>
         <Route path={FrontEndRoutes.HOUSE_ROUTE} element={<Rent type='House'/>}/>
         <Route path={FrontEndRoutes.PROFILE_ROUTE} element={<Profile/>}/>
+        <Route path={FrontEndRoutes.PROPERTY_ROUTE} element={<PropertyEntity/>}/>
       </Routes>
     </BrowserRouter>
   )

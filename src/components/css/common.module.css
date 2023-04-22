@@ -127,7 +127,16 @@
 
 .button_reset_pass {
     position: absolute;
-    margin-top: 61% !important;
+    margin-top: 50% !important;
+    margin-left: 43.5% !important;
+    width: 180px !important;
+    height: 50px !important;
+    border-radius: 43px !important;
+}
+
+.button_schedule {
+    position: absolute;
+    margin-top: -100px;
     margin-left: 40% !important;
     width: 180px;
     border-radius: 43px !important;
@@ -161,7 +170,7 @@
 
 .box_for_livings_profile {
     border: 1px solid black;
-    position: absolute;
+    position: absolute; 
     height: 60%;
     width: 70%;
     margin-left: 15%;
