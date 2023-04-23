@@ -16,7 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { Dayjs } from "dayjs";
 import style from "./css/common.module.css";
-import CloseIcon from '@mui/icons-material/Close';
+import CustomCalendar from "./Calendar";
 
 
 function PropertyEntity() {
@@ -99,12 +99,30 @@ function PropertyEntity() {
 
     async function makeSchedule() {
         var initialTime = value?.toDate().getTime()
+        var id = localStorage.getItem('property')
 
         if (initialTime == undefined) {
             setScheduleErr(true)
             setScheduleMessage('Invalid date format, should specify year:month:day:hour:minutes')
             return
         }
+
+        await axios.post(BackEndRoutes.ROOT_ROUTE + BackEndRoutes.SIGN_UP_ROUTE + "/" + localStorage.getItem('id') + "/schedules?property_id=" + id, {"date" : initialTime}, {
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token') as string
+            }
+        }).then(function(res) {
+            setScheduleSuccess(true)
+            setScheduleMessage(res.data)
+            setToggle(!toggle)
+        }).catch(function(err) {
+            console.log(err)
+            if (err.response.status == 400) {
+            setScheduleErr(true)
+            setScheduleMessage(err.response.data)
+            setToggle(!toggle)
+            }
+        })
     }
 
     const handleNext = () => {
@@ -202,21 +220,23 @@ function PropertyEntity() {
         }
       />
         </Box>}
-        <IconButton sx={{position:'absolute', marginTop:'15%', marginLeft:'80%'}} color={favoriteEnabled == true ? 'error' : 'disabled'} onClick={handleFavorite}><FavoriteIcon fontSize="large"/></IconButton>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateTimePicker']} sx={{position:'absolute', marginTop:'45%', marginLeft:'41%'}}>
-         <DateTimePicker value={value} onChange={(newValue) => setValue(newValue)} />
-      </DemoContainer>
-    </LocalizationProvider>
-    <Button onClick={() => makeSchedule()} className={style.button_reset_pass} variant="contained" sx={{background:"linear-gradient(#6EEE40, #52C9A6)"}}>SCHEDULE</Button>
-    <Snackbar
-        open={scheduleErr || scheduleSuccess}
-        autoHideDuration={10000}
-        onClose={handleClose}>
-         <Alert onClose={handleClose} severity={scheduleErr == true ? "error" : (scheduleSuccess == true ? "success" : "info")} sx={{ width: '100%' }}>
-            {scheduleMessage}
-            </Alert>
-      </Snackbar>
+        { localStorage.getItem('role') == 'CUSTOMER' &&
+        <><IconButton sx={{ position: 'absolute', marginTop: '15%', marginLeft: '80%' }} color={favoriteEnabled == true ? 'error' : 'disabled'} onClick={handleFavorite}><FavoriteIcon fontSize="large" /></IconButton><LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={['DateTimePicker']} sx={{ position: 'absolute', marginTop: '45%', marginLeft: '41%' }}>
+                        <DateTimePicker value={value} onChange={(newValue) => setValue(newValue)} />
+                    </DemoContainer>
+                </LocalizationProvider><Button onClick={() => makeSchedule()} className={style.button_reset_pass} variant="contained" sx={{ background: "linear-gradient(#6EEE40, #52C9A6)" }}>SCHEDULE</Button><Snackbar
+                    open={scheduleErr || scheduleSuccess}
+                    autoHideDuration={10000}
+                    onClose={handleClose}>
+                        <Alert onClose={handleClose} severity={scheduleErr == true ? "error" : (scheduleSuccess == true ? "success" : "info")} sx={{ width: '100%' }}>
+                            {scheduleMessage}
+                        </Alert>
+                    </Snackbar></>}
+        {
+            localStorage.getItem('role') == 'AGENT' &&
+            <CustomCalendar/>
+        }
         </>
     )
 }

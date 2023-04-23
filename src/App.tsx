@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import About from "./components/About"
-import Contact from "./components/Contact"
 import Home from "./components/Home"
 import Login from "./components/Login"
 import SignUp from "./components/SignUp"
@@ -20,7 +19,6 @@ function App() {
         <Route path={FrontEndRoutes.SIGN_UP_ROUTE} element={<SignUp />} />
         <Route path={FrontEndRoutes.HOME_ROUTE} element={<Home/>} />
         <Route path={FrontEndRoutes.ABOUT_ROUTE} element={<About/>}/>
-        <Route path={FrontEndRoutes.CONTACT_ROUTE} element={<Contact/>}/>
         <Route path={FrontEndRoutes.NEWS_ROUTE} element={<News/>}/>
         <Route path={FrontEndRoutes.SELL_ROUTE} element={<Sell/>}/>
         <Route path={FrontEndRoutes.ALL_ROUTE} element={<Rent type='All'/>}/>

@@ -4,6 +4,7 @@ import style from "./css/common.module.css";
 import { useState } from "react";
 import { BackEndRoutes, FrontEndRoutes } from "../constants/Constant";
 import axios from "axios";
+import Cookies from 'universal-cookie';
 
 function Login() {
   const [err, setErr] = useState(false)
@@ -11,14 +12,19 @@ function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const successCallback = (position: any) => {
+    const cookies = new Cookies();
+    cookies.set('latitude', position.coords.latitude)
+    cookies.set('longitude', position.coords.longitude)
+  };
+
   async function login() {
-    console.log(email)
-    console.log(password)
     await axios.post(BackEndRoutes.ROOT_ROUTE + BackEndRoutes.LOGIN_ROUTE, {'email' : email, 'password' : password})
     .then(function(res){
       localStorage.setItem('id', res.data.id)
       localStorage.setItem('role', res.data.role)
       localStorage.setItem('token', res.data.token)
+      navigator.geolocation.getCurrentPosition(successCallback)
       window.location.replace(FrontEndRoutes.HOME_ROUTE)
     })
     .catch(function(err) {

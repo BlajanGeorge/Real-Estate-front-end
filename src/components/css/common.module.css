@@ -181,3 +181,9 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
+
+.calendar {
+    position: absolute;
+    height: 500px;
+    width: 500px;
+}
