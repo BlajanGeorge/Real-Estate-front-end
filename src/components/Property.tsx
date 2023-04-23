@@ -1,7 +1,7 @@
 import { Alert, Box, Button, IconButton, MobileStepper, Paper, Snackbar, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BackEndRoutes } from "../constants/Constant";
+import { BackEndRoutes, FrontEndRoutes } from "../constants/Constant";
 import Navbar from "./Navbar";
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
@@ -17,6 +17,9 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { Dayjs } from "dayjs";
 import style from "./css/common.module.css";
 import CustomCalendar from "./Calendar";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -62,6 +65,14 @@ function PropertyEntity() {
     const [scheduleMessage, setScheduleMessage] = useState('')
     const [schedules, setSchedules] = useState(Array<schedule>)
     const [schedulesChart, setSchedulesChart] = useState(Array<ScheduleCount>)
+    const [showEdit, setShowEdit] = useState(false)
+    const [editName, setEditName] = useState('')
+    const [editExchange, setEditExchange] = useState('')
+    const [editPrice, setEditPrice] = useState('')
+    const [editRooms, setEditRooms] = useState('')
+    const [editType, setEditType] = useState('')
+    const [editSquareFeet, setEditSquareFeet] = useState('')
+
     const data = {
         labels : schedulesChart.map(sch => sch.label),
         datasets: [
@@ -224,6 +235,25 @@ function PropertyEntity() {
         })
     }
 
+    async function deleteProperty() {
+       var id = localStorage.getItem('property')
+
+       await axios.delete(BackEndRoutes.ROOT_ROUTE + BackEndRoutes.PROPERTIES_ROUTE + "/" + id, {
+        headers: {
+            authorization: 'Bearer ' + localStorage.getItem('token') as string
+        } 
+       }).then(function(res) {
+        localStorage.removeItem('property')
+        window.location.replace(FrontEndRoutes.ALL_ROUTE)
+       })
+    }
+
+    async function editProperty() {
+        console.log("da")
+        setShowEdit(true)
+        setToggle(!toggle)
+    }
+
     useEffect(()=>{
         getProperty()
         checkFav()
@@ -326,6 +356,27 @@ function PropertyEntity() {
                     <Box sx={{position:'absolute', width:'40%', height:'40%', marginTop:'80%', marginLeft:'30%' }}>
                         <Bar options={options} data={data} />
                         </Box>
+                        <IconButton sx={{ position: 'absolute', marginTop: '15%', marginLeft: '80%' }} onClick={deleteProperty}><DeleteIcon fontSize="large" /></IconButton>
+                        <IconButton sx={{ position: 'absolute', marginTop: '15%', marginLeft: '83%' }} onClick={editProperty}><EditIcon fontSize="large" /></IconButton>
+                        {
+                            showEdit == true &&
+                            <Box sx={{height:'100%', width:'100%', zIndex:'1999900', backgroundColor:'rgba(255,255,255,0.3)', position:'absolute'}}>
+                                <Box sx={{height:'40%', width:'60%', border:'1px solid black', borderRadius:'43px', marginTop:'20%', marginLeft:'20%', backgroundColor:'white'}}>
+                                <label>
+                                  <input value={property!.name} type="text" placeholder="Name" className={style.field_name_update} onChange={event => setEditName(event.target.value)}/>
+                                </label>
+                                <label>
+                                  <input value={property!.square_feet} type="text" placeholder="Square feet" className={style.field_sq_update} onChange={event => setEditSquareFeet(event.target.value)}/>
+                                </label>
+                                <label>
+                                  <input value={property!.price} type="text" placeholder="Price" className={style.field_price_update} onChange={event => setEditPrice(event.target.value)}/>
+                                </label>
+                                <label>
+                                  <input value={property!.rooms} type="text" placeholder="Rooms" className={style.field_rooms_update} onChange={event => setEditRooms(event.target.value)}/>
+                                </label>
+                                </Box>
+                            </Box>
+                        }
                         </>
         }
         </>
