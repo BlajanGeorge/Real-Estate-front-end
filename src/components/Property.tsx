@@ -8,7 +8,7 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import { useTheme } from '@mui/material/styles';
 import React from "react";
 import { Photo, Property } from "./Profile";
-import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
+import { KeyboardArrowLeft, KeyboardArrowRight, TenMp } from "@mui/icons-material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -17,12 +17,35 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { Dayjs } from "dayjs";
 import style from "./css/common.module.css";
 import CustomCalendar from "./Calendar";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+);
 
 function PropertyEntity() {
     interface schedule {
         title : string,
         start : Date,
+    }
+
+    interface ScheduleCount {
+        label : string,
+        data : number,
     }
 
     const [property, setProperty] = useState<Property>()
@@ -38,6 +61,25 @@ function PropertyEntity() {
     const [scheduleSuccess, setScheduleSuccess] = useState(false)
     const [scheduleMessage, setScheduleMessage] = useState('')
     const [schedules, setSchedules] = useState(Array<schedule>)
+    const [schedulesChart, setSchedulesChart] = useState(Array<ScheduleCount>)
+    const data = {
+        labels : schedulesChart.map(sch => sch.label),
+        datasets: [
+            {
+                label: 'Schedules',
+                data: schedulesChart.map(sch => sch.data),
+                backgroundColor: 'green',
+            }
+        ],
+    };
+
+    const options =  {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+    }
 
     async function getProperty() {
         var id = localStorage.getItem('property')
@@ -157,7 +199,27 @@ function PropertyEntity() {
             var schedulesPayload: { name: string; date: Date; }[] = []
             Array.from(res.data).forEach((schedule: { first_name: string; last_name: string; date: string | number | Date; }) => schedulesPayload.push({'title' : schedule.first_name + ' ' + schedule.last_name, 'start' : new Date(schedule.date)}))
             setSchedules(schedulesPayload)
-            console.log(schedulesPayload)
+            setToggle(!toggle)
+        })
+    }
+
+    async function getStatistics() {
+        var endDate = new Date()
+        endDate.setHours(23,59,59)
+        endDate.setDate(endDate.getDate() + 1)
+        var endTimeMillis = endDate.getTime()
+        var startDate = new Date()
+        startDate.setHours(23,59.59)
+        startDate.setDate(startDate.getDate() + 1)
+        startDate.setMonth(startDate.getMonth() - 1)
+        var startTimeMillis = startDate.getTime()
+
+        await axios.get(BackEndRoutes.ROOT_ROUTE + BackEndRoutes.PROPERTIES_ROUTE + "/" + localStorage.getItem('property') + "/schedules/count?start_time=" + startTimeMillis + "&end_time=" + endTimeMillis, {
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token') as string
+            } 
+        }).then(function(res){
+            setSchedulesChart(res.data)
             setToggle(!toggle)
         })
     }
@@ -167,6 +229,7 @@ function PropertyEntity() {
         checkFav()
         if (localStorage.getItem('role') == 'AGENT') {
             getSchedules()
+            getStatistics()
         }
     }, [])
         
@@ -258,9 +321,12 @@ function PropertyEntity() {
                     </Snackbar></>}
         {
             localStorage.getItem('role') == 'AGENT' &&
-            <CustomCalendar
-            events={schedules}
-            />
+            <><CustomCalendar
+                    events={schedules} />
+                    <Box sx={{position:'absolute', width:'40%', height:'40%', marginTop:'80%', marginLeft:'30%' }}>
+                        <Bar options={options} data={data} />
+                        </Box>
+                        </>
         }
         </>
     )
