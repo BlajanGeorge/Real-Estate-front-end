@@ -19,6 +19,8 @@ import style from "./css/common.module.css";
 import CustomCalendar from "./Calendar";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 
 import {
     Chart as ChartJS,
@@ -72,6 +74,8 @@ function PropertyEntity() {
     const [editRooms, setEditRooms] = useState('')
     const [editType, setEditType] = useState('')
     const [editSquareFeet, setEditSquareFeet] = useState('')
+    const [editError, setEditError] = useState(false)
+    const [editErrorMsg, setEditErrorMsg] = useState('')
 
     const data = {
         labels : schedulesChart.map(sch => sch.label),
@@ -201,6 +205,10 @@ function PropertyEntity() {
         setScheduleSuccess(false)
     }
 
+    const handleEditSnakClose = () => {
+        setEditError(false)
+    }
+
     async function getSchedules() {
         await axios.get(BackEndRoutes.ROOT_ROUTE + BackEndRoutes.PROPERTIES_ROUTE + "/" + localStorage.getItem('property') + "/schedules" , {
             headers: {
@@ -253,6 +261,69 @@ function PropertyEntity() {
         setShowEdit(true)
         setToggle(!toggle)
     }
+
+    const handleCloseEdit = () => {
+        setEditName('')
+        setEditExchange('')
+        setEditPrice('')
+        setEditRooms('')
+        setEditSquareFeet('')
+        setEditType('')
+        setShowEdit(false)
+        setToggle(!toggle)
+    }
+
+    const handleEdit = () => {
+        if (editName == '') {
+            setEditError(true)
+            setEditErrorMsg('Name must not be blank')
+            return
+        }
+
+        if (editPrice == '') {
+            setEditError(true)
+            setEditErrorMsg('Price must not be blank')
+            return
+        }
+
+        if (editRooms == '') {
+            setEditError(true)
+            setEditErrorMsg('Rooms must not be blank')
+            return
+        }
+
+        if (editSquareFeet == '') {
+            setEditError(true)
+            setEditErrorMsg('Square feet must not be blank')
+            return
+        }
+
+        if (editType == '') {
+            setEditError(true)
+            setEditErrorMsg('Type must not be blank')
+            return
+        }
+
+        if (editExchange == '') {
+            setEditError(true)
+            setEditErrorMsg('Exchange must not be blank')
+            return
+        }
+
+        if (editExchange != 'Euro' && editExchange != 'Pound' && editExchange != 'Dollar') {
+            setEditError(true)
+            setEditErrorMsg('Exchange must be one of : Euro | Pound | Dollar')
+            return
+        }
+
+        if (editType != 'House' && editType != 'Apartment') {
+            setEditError(true)
+            setEditErrorMsg('Type must be one of : House | Apartment')
+            return
+        }
+
+        
+     }
 
     useEffect(()=>{
         getProperty()
@@ -361,20 +432,36 @@ function PropertyEntity() {
                         {
                             showEdit == true &&
                             <Box sx={{height:'100%', width:'100%', zIndex:'1999900', backgroundColor:'rgba(255,255,255,0.3)', position:'absolute'}}>
-                                <Box sx={{height:'40%', width:'60%', border:'1px solid black', borderRadius:'43px', marginTop:'20%', marginLeft:'20%', backgroundColor:'white'}}>
+                                <Box sx={{height:'30%', width:'50%', border:'1px solid black', borderRadius:'43px', marginTop:'20%', marginLeft:'25%', backgroundColor:'white'}}>
                                 <label>
-                                  <input value={property!.name} type="text" placeholder="Name" className={style.field_name_update} onChange={event => setEditName(event.target.value)}/>
+                                  <input value={editName} type="text" placeholder="Name" className={style.field_name_update} onChange={event => setEditName(event.target.value)}/>
                                 </label>
                                 <label>
-                                  <input value={property!.square_feet} type="text" placeholder="Square feet" className={style.field_sq_update} onChange={event => setEditSquareFeet(event.target.value)}/>
+                                  <input value={editSquareFeet} type="text" placeholder="Square feet" className={style.field_sq_update} onChange={event => setEditSquareFeet(event.target.value as unknown as number)}/>
                                 </label>
                                 <label>
-                                  <input value={property!.price} type="text" placeholder="Price" className={style.field_price_update} onChange={event => setEditPrice(event.target.value)}/>
+                                  <input value={editPrice} type="text" placeholder="Price" className={style.field_price_update} onChange={event => setEditPrice(event.target.value as unknown as number)}/>
                                 </label>
                                 <label>
-                                  <input value={property!.rooms} type="text" placeholder="Rooms" className={style.field_rooms_update} onChange={event => setEditRooms(event.target.value)}/>
+                                  <input value={editRooms} type="text" placeholder="Rooms" className={style.field_rooms_update} onChange={event => setEditRooms(event.target.value as unknown as number)}/>
                                 </label>
+                                <label>
+                                  <input value={editExchange} type="text" placeholder="Exchange" className={style.field_exchange_update} onChange={event => setEditExchange(event.target.value)}/>
+                                </label>
+                                <label>
+                                  <input value={editType} type="text" placeholder="Type" className={style.field_type_update} onChange={event => setEditType(event.target.value)}/>
+                                </label>
+                                <IconButton sx={{ position: 'absolute', marginTop: '14%', marginLeft: '22%' }} onClick={handleEdit}><CheckIcon fontSize="large" /></IconButton>
+                                <IconButton sx={{ position: 'absolute', marginTop: '14%', marginLeft: '25%' }} onClick={handleCloseEdit} ><ClearIcon fontSize="large" /></IconButton>
                                 </Box>
+                                <Snackbar
+                                   open={editError}
+                                   autoHideDuration={10000}
+                                   onClose={handleEditSnakClose}>
+                                   <Alert onClose={handleEditSnakClose} severity="error" sx={{ width: '100%' }}>
+                                    {editErrorMsg}
+                                 </Alert>
+                               </Snackbar>
                             </Box>
                         }
                         </>

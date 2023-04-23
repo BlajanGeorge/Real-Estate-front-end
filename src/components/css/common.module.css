@@ -229,7 +229,33 @@
 
 .field_rooms_update {
     margin-top: 2%;
-    margin-left: 23%;
+    margin-left: 28%;
+    position: absolute;
+    width: 20% !important;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_exchange_update {
+    margin-top: 6%;
+    margin-left: 28%;
+    position: absolute;
+    width: 20% !important;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.field_type_update {
+    margin-top: 10%;
+    margin-left: 28%;
     position: absolute;
     width: 20% !important;
     border-radius: 43px !important;
