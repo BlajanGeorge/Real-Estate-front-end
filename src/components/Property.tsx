@@ -20,6 +20,11 @@ import CustomCalendar from "./Calendar";
 
 
 function PropertyEntity() {
+    interface schedule {
+        title : string,
+        start : Date,
+    }
+
     const [property, setProperty] = useState<Property>()
     const [photos, setPhotos] = useState(Array<Photo>)
     const [toggle, setToggle] = useState(false)
@@ -32,6 +37,7 @@ function PropertyEntity() {
     const [scheduleErr, setScheduleErr] = useState(false)
     const [scheduleSuccess, setScheduleSuccess] = useState(false)
     const [scheduleMessage, setScheduleMessage] = useState('')
+    const [schedules, setSchedules] = useState(Array<schedule>)
 
     async function getProperty() {
         var id = localStorage.getItem('property')
@@ -142,9 +148,26 @@ function PropertyEntity() {
         setScheduleSuccess(false)
     }
 
+    async function getSchedules() {
+        await axios.get(BackEndRoutes.ROOT_ROUTE + BackEndRoutes.PROPERTIES_ROUTE + "/" + localStorage.getItem('property') + "/schedules" , {
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token') as string
+            }
+        }).then(function(res){
+            var schedulesPayload: { name: string; date: Date; }[] = []
+            Array.from(res.data).forEach((schedule: { first_name: string; last_name: string; date: string | number | Date; }) => schedulesPayload.push({'title' : schedule.first_name + ' ' + schedule.last_name, 'start' : new Date(schedule.date)}))
+            setSchedules(schedulesPayload)
+            console.log(schedulesPayload)
+            setToggle(!toggle)
+        })
+    }
+
     useEffect(()=>{
         getProperty()
         checkFav()
+        if (localStorage.getItem('role') == 'AGENT') {
+            getSchedules()
+        }
     }, [])
         
     return (
@@ -235,7 +258,9 @@ function PropertyEntity() {
                     </Snackbar></>}
         {
             localStorage.getItem('role') == 'AGENT' &&
-            <CustomCalendar/>
+            <CustomCalendar
+            events={schedules}
+            />
         }
         </>
     )

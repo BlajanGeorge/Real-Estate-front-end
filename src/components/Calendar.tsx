@@ -4,11 +4,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { Box } from '@mui/material'
 
-function CustomCalendar() {
-    const events = [
-        { title: 'Meeting', start: new Date() }
-      ]
-      
+function CustomCalendar(_props: any) {      
     return (
         <Box sx={{position:'absolute', height:'30%', width:'40%', marginTop:'45%', marginLeft:'30%'}}>
         <FullCalendar
@@ -18,7 +14,7 @@ function CustomCalendar() {
             center: "title",
             right: "timeGridWeek,timeGridDay"
           }}
-        events={events}
+        events={_props.events}
         initialView="timeGridDay"
       />
        </Box>
