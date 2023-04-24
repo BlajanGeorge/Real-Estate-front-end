@@ -35,7 +35,7 @@
     position: absolute;
     margin-left: 33% !important;
     margin-top: 35% !important;
-    width: 32%;
+    width: 15%;
     border-radius: 43px !important;
     background-color: #F9F9F9 !important;
     size: "medium" !important;
@@ -115,10 +115,24 @@
     text-align: center;
 }
 
+.field_9{
+    position: absolute;
+    margin-left: 50% !important;
+    margin-top: 35% !important;
+    width: 15%;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
 .logo_2 {
     position: absolute;
-    margin-top: 50%;
-    margin-left: 40%;
+    margin-top: 51%;
+    margin-left: -24%;
 }
 
 .button {
@@ -128,4 +142,32 @@
     margin-top: 50.5% !important;
     margin-left: 47% !important;
     height: 50px !important;
+}
+
+.autocomplete_1 {
+    position: absolute !important;
+    margin-left: 50% !important;
+    margin-top: 45% !important;
+    width: 17% !important;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
+}
+
+.autocomplete_2 {
+    position: absolute !important;
+    margin-left: 50% !important;
+    margin-top: 40% !important;
+    width: 17% !important;
+    border-radius: 43px !important;
+    background-color: #F9F9F9 !important;
+    size: "medium" !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: inset 1px 1px 10px  gray;
+    text-align: center;
 }
