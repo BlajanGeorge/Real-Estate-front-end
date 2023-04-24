@@ -10,6 +10,7 @@ export const FrontEndRoutes = {
     SELL_ROUTE:"/sell",
     PROFILE_ROUTE:"/profile",
     PROPERTY_ROUTE:"/property",
+    CONTACT_ROUTE:'/contact',
 };
 
 export const BackEndRoutes = {

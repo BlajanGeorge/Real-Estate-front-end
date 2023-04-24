@@ -9,6 +9,7 @@ import Sell from "./components/Sell"
 import Rent from "./components/Rent"
 import Profile from "./components/Profile"
 import PropertyEntity from "./components/Property"
+import Contact from "./components/Contact"
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path={FrontEndRoutes.HOUSE_ROUTE} element={<Rent type='House'/>}/>
         <Route path={FrontEndRoutes.PROFILE_ROUTE} element={<Profile/>}/>
         <Route path={FrontEndRoutes.PROPERTY_ROUTE} element={<PropertyEntity/>}/>
+        <Route path={FrontEndRoutes.CONTACT_ROUTE} element={<Contact/>}/>
       </Routes>
     </BrowserRouter>
   )

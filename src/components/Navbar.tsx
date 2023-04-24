@@ -129,6 +129,7 @@ function Navbar() {
                         All
                     </MenuItem>
                 </Menu>
+                { localStorage.getItem('role') == 'AGENT' &&
               <Button className={navbar_style.button} disableRipple sx={{
               "&.MuiButtonBase-root:hover": {
                 bgcolor: "transparent"
@@ -136,6 +137,7 @@ function Navbar() {
             }}
             onClick={handleSell}
             >Sell</Button>
+            }
               <Button className={navbar_style.button} disableRipple
               onClick={handleAbout}
               sx={{
@@ -143,6 +145,7 @@ function Navbar() {
                 bgcolor: "transparent"
               }
             }}>About</Button>
+            { localStorage.getItem('role') == 'CUSTOMER' &&
               <Button className={navbar_style.button} disableRipple
                onClick={handleContact}
               sx={{
@@ -150,7 +153,8 @@ function Navbar() {
                 bgcolor: "transparent"
               }
             }}>Contact</Button>
-         <IconButton sx={{height:'80px', width:'80px', position:'relative', marginLeft:'15%', marginTop:'2.5%'}} onClick={handleOpenUserMenu}>
+         }
+         <IconButton sx={{height:'80px', width:'80px', position:'relative', marginLeft:'25%', marginTop:'2.5%'}} onClick={handleOpenUserMenu}>
             <AccountCircleIcon sx={{color:"green", fontSize:'60px'}}/>
          </IconButton>
          <Menu

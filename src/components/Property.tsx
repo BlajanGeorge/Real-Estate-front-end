@@ -257,7 +257,6 @@ function PropertyEntity() {
     }
 
     async function editProperty() {
-        console.log("da")
         setShowEdit(true)
         setToggle(!toggle)
     }
@@ -273,7 +272,7 @@ function PropertyEntity() {
         setToggle(!toggle)
     }
 
-    const handleEdit = () => {
+    async function handleEdit() {
         if (editName == '') {
             setEditError(true)
             setEditErrorMsg('Name must not be blank')
@@ -322,7 +321,22 @@ function PropertyEntity() {
             return
         }
 
-        
+        await axios.put(BackEndRoutes.ROOT_ROUTE + BackEndRoutes.PROPERTIES_ROUTE + "/" + localStorage.getItem('property') , {"name" : editName, "exchange" : editExchange, "rooms" : editRooms, "type" : editType, "square_feet" : editSquareFeet, "price" : editPrice}, {
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token') as string
+            } 
+        }).then(function(res){
+        setEditName('')
+        setEditExchange('')
+        setEditPrice('')
+        setEditRooms('')
+        setEditSquareFeet('')
+        setEditType('')
+        setToggle(!toggle)
+        setShowEdit(false)
+        }).catch(function(err){
+            console.log(err)
+        })
      }
 
     useEffect(()=>{
@@ -437,13 +451,13 @@ function PropertyEntity() {
                                   <input value={editName} type="text" placeholder="Name" className={style.field_name_update} onChange={event => setEditName(event.target.value)}/>
                                 </label>
                                 <label>
-                                  <input value={editSquareFeet} type="text" placeholder="Square feet" className={style.field_sq_update} onChange={event => setEditSquareFeet(event.target.value as unknown as number)}/>
+                                  <input value={editSquareFeet} type="text" placeholder="Square feet" className={style.field_sq_update} onChange={event => setEditSquareFeet(event.target.value)}/>
                                 </label>
                                 <label>
-                                  <input value={editPrice} type="text" placeholder="Price" className={style.field_price_update} onChange={event => setEditPrice(event.target.value as unknown as number)}/>
+                                  <input value={editPrice} type="text" placeholder="Price" className={style.field_price_update} onChange={event => setEditPrice(event.target.value)}/>
                                 </label>
                                 <label>
-                                  <input value={editRooms} type="text" placeholder="Rooms" className={style.field_rooms_update} onChange={event => setEditRooms(event.target.value as unknown as number)}/>
+                                  <input value={editRooms} type="text" placeholder="Rooms" className={style.field_rooms_update} onChange={event => setEditRooms(event.target.value)}/>
                                 </label>
                                 <label>
                                   <input value={editExchange} type="text" placeholder="Exchange" className={style.field_exchange_update} onChange={event => setEditExchange(event.target.value)}/>
