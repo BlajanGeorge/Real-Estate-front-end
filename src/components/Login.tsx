@@ -24,6 +24,7 @@ function Login() {
       localStorage.setItem('id', res.data.id)
       localStorage.setItem('role', res.data.role)
       localStorage.setItem('token', res.data.token)
+      localStorage.setItem('logged', 'true')
       navigator.geolocation.getCurrentPosition(successCallback)
       window.location.replace(FrontEndRoutes.HOME_ROUTE)
     })

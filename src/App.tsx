@@ -10,6 +10,9 @@ import Rent from "./components/Rent"
 import Profile from "./components/Profile"
 import PropertyEntity from "./components/Property"
 import Contact from "./components/Contact"
+import { GenericRoute } from "./components/GenericRoute"
+import { AgentRoute } from "./components/AgentRoute"
+import { CustomerRoute } from "./components/CustomerRoute"
 
 function App() {
 
@@ -18,16 +21,16 @@ function App() {
       <Routes>
         <Route path={FrontEndRoutes.LOGIN_ROUTE} element={<Login />} />
         <Route path={FrontEndRoutes.SIGN_UP_ROUTE} element={<SignUp />} />
-        <Route path={FrontEndRoutes.HOME_ROUTE} element={<Home/>} />
-        <Route path={FrontEndRoutes.ABOUT_ROUTE} element={<About/>}/>
-        <Route path={FrontEndRoutes.NEWS_ROUTE} element={<News/>}/>
-        <Route path={FrontEndRoutes.SELL_ROUTE} element={<Sell/>}/>
-        <Route path={FrontEndRoutes.ALL_ROUTE} element={<Rent type='All'/>}/>
-        <Route path={FrontEndRoutes.APARTMENT_ROUTE} element={<Rent type='Apartment'/>}/>
-        <Route path={FrontEndRoutes.HOUSE_ROUTE} element={<Rent type='House'/>}/>
-        <Route path={FrontEndRoutes.PROFILE_ROUTE} element={<Profile/>}/>
+        <Route path={FrontEndRoutes.HOME_ROUTE} element={<GenericRoute><Home/></GenericRoute>} />
+        <Route path={FrontEndRoutes.ABOUT_ROUTE} element={<GenericRoute><About/></GenericRoute>}/>
+        <Route path={FrontEndRoutes.NEWS_ROUTE} element={<GenericRoute><News/></GenericRoute>}/>
+        <Route path={FrontEndRoutes.SELL_ROUTE} element={<><AgentRoute><Sell /></AgentRoute></>}/>
+        <Route path={FrontEndRoutes.ALL_ROUTE} element={<GenericRoute><Rent type='All'/></GenericRoute>}/>
+        <Route path={FrontEndRoutes.APARTMENT_ROUTE} element={<GenericRoute><Rent type='Apartment'/></GenericRoute>}/>
+        <Route path={FrontEndRoutes.HOUSE_ROUTE} element={<GenericRoute><Rent type='House'/></GenericRoute>}/>
+        <Route path={FrontEndRoutes.PROFILE_ROUTE} element={<GenericRoute><Profile/></GenericRoute>}/>
         <Route path={FrontEndRoutes.PROPERTY_ROUTE} element={<PropertyEntity/>}/>
-        <Route path={FrontEndRoutes.CONTACT_ROUTE} element={<Contact/>}/>
+        <Route path={FrontEndRoutes.CONTACT_ROUTE} element={<CustomerRoute><Contact/></CustomerRoute>}/>
       </Routes>
     </BrowserRouter>
   )
